@@ -5,12 +5,10 @@ import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-const store = createStore(reducer, window.devToolsExtension && window.devToolsExtension());
+// const store = createStore(null, window.devToolsExtension && window.devToolsExtension());
 
 injectTapEventPlugin();
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, document.getElementById('app')
+        <App />, document.getElementById('app')
 );

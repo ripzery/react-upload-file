@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiThemeProvider from '../node_modules/material-ui/styles/MuiThemeProvider';
-import Uploader from './components/Uploader'
+import Uploader from './components/UploadApp'
 
 class App extends React.Component {
     render() {
