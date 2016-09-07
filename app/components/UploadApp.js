@@ -11,7 +11,6 @@ const UploadApp = () => (
         <RaisedButton label="Upload" primary={true} />
     </div>
 );
-
 const Title = () => (
     <div>
         <h1>React Uploader</h1>
