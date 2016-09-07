@@ -13,7 +13,7 @@ const UploadApp = () => (
 );
 const Title = () => (
     <div>
-        <h1>React Uploader</h1>
+        <h1>React Uploader Test</h1>
     </div>
 );
 
