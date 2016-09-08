@@ -1,19 +1,22 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
+import FileInput from './FileInput'
 
 const styles = {
-    textCenter: {textAlign: 'center'}
+    textCenter: {textAlign: 'center'},
+    marginTop16: {marginTop: 16}
 };
 
 const UploadApp = () => (
     <div style={styles.textCenter}>
         <Title />
-        <RaisedButton label="Upload" primary={true} />
+        <FileInput />
+        <RaisedButton type="file" style={styles.marginTop16} label="Upload" primary={true} />
     </div>
 );
 const Title = () => (
     <div>
-        <h1>React Uploader (New version 12)</h1>
+        <h1>React Uploader</h1>
     </div>
 );
 
