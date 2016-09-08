@@ -2,6 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone'
 import {ReactRpg} from 'react-rpg';
 import Paper from 'material-ui/Paper';
+import {selectedFiles} from '../actions/UploadFileAction'
 
 const styles = {
     dropZoneEmpty: {
@@ -40,26 +41,22 @@ const styles = {
 class FileInput extends React.Component {
     constructor() {
         super();
-        this.state = {
-            files: null
-        };
         this.onDrop = this.onDrop.bind(this)
     }
 
     onDrop(files) {
-        this.setState({
-            files: files
-        }, function () {
-
+        let newFiles = files.map(function(file) {
+            return {...file, url: file.preview}
         });
+        this.props.dispatch(selectedFiles(newFiles));
     }
     render() {
         return (
-            <Dropzone onDrop={this.onDrop} style={this.state.files != null ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
+            <Dropzone onDrop={this.onDrop} style={this.props.files.length > 0 ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
                 <div >
-                    { this.state.files != null
+                    { this.props.files.length > 0
                         ? <FileDetail
-                        files={this.state.files.map(function(file) { return {...file, url: file.preview}})}/>
+                        files={this.props.files}/>
                         : <h1>Drop, or select file here</h1>}
                 </div>
             </Dropzone>
