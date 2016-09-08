@@ -17,7 +17,6 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('production')
             }
         }),
-        new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             minimize: true,
             compress: {
