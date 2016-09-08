@@ -53,7 +53,6 @@ class FileInput extends React.Component {
 
         });
     }
-
     render() {
         return (
             <Dropzone onDrop={this.onDrop} style={this.state.files != null ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
