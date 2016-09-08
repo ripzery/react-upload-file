@@ -5,10 +5,10 @@ export const selectedFiles = (files) => {
     }
 };
 
-export const removeAllFile = (files) => {
+export const removeAllFile = () => {
     return {
         type: 'REMOVE_FILE',
-        files
+        files: []
     }
 };
 
