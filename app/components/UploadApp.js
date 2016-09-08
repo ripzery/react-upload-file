@@ -1,6 +1,10 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import FileInput from './FileInput'
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import FlatButton from 'material-ui/FlatButton';
 
 const styles = {
     textCenter: {textAlign: 'center'},
@@ -9,9 +13,12 @@ const styles = {
 
 const UploadApp = () => (
     <div style={styles.textCenter}>
-        <Title />
-        <FileInput />
-        <RaisedButton type="file" style={styles.marginTop16} label="Upload" primary={true}/>
+        <AppBar
+            title={<span>React Uploader</span>}
+            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+            iconElementRight={<FlatButton label="Upload" />}
+        />
+        <FileInput  />
     </div>
 );
 const Title = () => (
