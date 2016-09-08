@@ -11,7 +11,7 @@ const UploadApp = () => (
     <div style={styles.textCenter}>
         <Title />
         <FileInput />
-        <RaisedButton type="file" style={styles.marginTop16} label="Upload" primary={true} />
+        <RaisedButton type="file" style={styles.marginTop16} label="Upload" primary={true}/>
     </div>
 );
 const Title = () => (
