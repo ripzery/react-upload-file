@@ -13,7 +13,7 @@ const UploadApp = () => (
 );
 const Title = () => (
     <div>
-        <h1>React Uploader (New version 3)</h1>
+        <h1>React Uploader (New version 10)</h1>
     </div>
 );
 
