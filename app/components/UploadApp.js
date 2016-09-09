@@ -14,10 +14,5 @@ const UploadApp = () => (
         <FileInput  />
     </div>
 );
-const Title = () => (
-<div>
-    <h1>React Uploader</h1>
-</div>
-);
 
 export default UploadApp

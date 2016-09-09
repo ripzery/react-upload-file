@@ -6,10 +6,10 @@ import FlatButton from 'material-ui/FlatButton';
 
 const Appbar = ({files, removeAll}) => (
     <AppBar
-        title={<span >React Uploader</span>}
+        title={<span >React Image Uploader</span>}
         iconElementLeft={files.length === 0 ? null : <IconButton onClick={removeAll} ><NavigationClose /></IconButton>}
         iconElementRight={<FlatButton label="Upload" />}
     />
-)
+);
 
 export default Appbar

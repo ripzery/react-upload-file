@@ -58,7 +58,7 @@ class FileInput extends React.Component {
                     { this.props.files.length > 0
                         ? <FileDetail
                         files={this.props.files}/>
-                        : <h1>Drop, or select file here</h1>}
+                        : <h1>Drop, or select image here</h1>}
                 </div>
             </Dropzone>
 
