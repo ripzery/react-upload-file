@@ -22,7 +22,7 @@ export const init = () => {
 }
 
 export const fetchGalleryTypes = (url) => {
-    return fetch(url)
-        .then(response => response.json())
-        .then(json => dis)
-}
+    fetch(url, {method: 'post'})
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+};
