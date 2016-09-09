@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+
 export const selectedFiles = (files) => {
     return {
         type: 'SELECTED_FILE',
@@ -17,4 +19,10 @@ export const init = () => {
         type: 'INIT',
         files: []
     }
-};
+}
+
+export const fetchGalleryTypes = (url) => {
+    return fetch(url)
+        .then(response => response.json())
+        .then(json => dis)
+}
