@@ -4,15 +4,15 @@ const UploadReducer = (state = [], action) => {
     switch(action.type){
         case 'SELECTED_FILE':
             return {
-                files: action.files
+                ...action
             };
         case 'REMOVE_FILE':
             return {
-                files: []
+                ...action
             };
         case 'INIT':
             return {
-                files: []
+                ...action
             };
         default:
             return state

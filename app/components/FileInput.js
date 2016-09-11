@@ -48,16 +48,16 @@ class FileInput extends React.Component {
         let newFiles = files.map(function(file) {
             return {...file, url: file.preview}
         });
-        this.props.dispatch(selectedFiles(newFiles));
+        this.props.dispatch(selectedFiles(files, newFiles));
     }
     render() {
         return (
-            <Dropzone onDrop={this.onDrop} style={this.props.files.length > 0 ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
+            <Dropzone onDrop={this.onDrop} style={this.props.previewFiles.length > 0 ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
                 <div >
-                    { this.props.files.length > 0
+                    { this.props.previewFiles.length > 0
                         ? <FileDetail
-                        files={this.props.files}/>
-                        : <h1>Drop, or select file here</h1>}
+                        files={this.props.previewFiles}/>
+                        : <h1>Drop, or select image here</h1>}
                 </div>
             </Dropzone>
 

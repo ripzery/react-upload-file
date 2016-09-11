@@ -4,6 +4,7 @@ var path = require('path');
 module.exports = {
     devtool: "cheap-module-source-map",
     entry: [
+        'whatwg-fetch',
         './main.js'
     ],
     output: {
