@@ -11,7 +11,7 @@ const styles = {
 const UploadApp = () => (
     <div style={styles.textCenter}>
         <AppBar />
-        <FileInput  />
+        <FileInput />
     </div>
 );
 

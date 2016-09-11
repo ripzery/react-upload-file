@@ -3,7 +3,8 @@ import FileInput from '../components/FileInput'
 
 const mapStateToProps = (state) => {
     return {
-        files: state.UploadReducer.files
+        files: state.UploadReducer.files,
+        previewFiles: state.UploadReducer.previewFiles
     }
 };
 
