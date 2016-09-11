@@ -16,7 +16,7 @@ class Appbar extends React.Component {
             let formData = new FormData();
             this.props.files.reduce((a, file) => formData.append("photos", file), this.props.files[0]);
             formData.append("folder", "custom");
-            fetchGalleryTypes("http://localhost:3000/photos/upload", formData)
+            fetchGalleryTypes("http://blog.ripzery.com:3000/upload/upload", formData)
         }else{
             console.log("Please select at least 1 file!");
         }
