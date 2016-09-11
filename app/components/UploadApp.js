@@ -2,6 +2,7 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import FileInput from '../containers/FileInputContainer'
 import AppBar from '../containers/AppbarContainer'
+import {fullBlack} from 'material-ui/styles/colors';
 
 const styles = {
     textCenter: {textAlign: 'center'},

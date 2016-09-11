@@ -3,7 +3,7 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
-import {fetchGalleryTypes} from '../actions/UploadFileAction'
+import {upload} from '../actions/UploadFileAction'
 
 class Appbar extends React.Component {
     constructor() {
@@ -13,10 +13,7 @@ class Appbar extends React.Component {
 
     upload() {
         if (this.props.files.length > 0) {
-            let formData = new FormData();
-            this.props.files.reduce((a, file) => formData.append("photos", file), this.props.files[0]);
-            formData.append("folder", "custom");
-            fetchGalleryTypes("http://blog.ripzery.com:3000/upload/upload", formData)
+            upload("http://localhost:3000/photos/upload", this.props.files)
         }else{
             console.log("Please select at least 1 file!");
         }
