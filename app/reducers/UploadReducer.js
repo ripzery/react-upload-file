@@ -17,6 +17,11 @@ const UploadReducer = (state = [], action) => {
                 ...state,
                 ...action
             };
+        case 'UPLOAD_FINISH':
+            return {
+                ...state,
+                uploadedFiles: action.uploadedFiles
+            };
         case 'INIT':
             return {
                 ...action

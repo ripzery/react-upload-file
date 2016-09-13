@@ -32,14 +32,20 @@ export const init = () => {
     }
 };
 
-export const upload = (files) => {
+export const upload = (files, folder, dispatch) => {
     let formData = new FormData();
     files.reduce((a, file) => formData.append("photos", file), files[0]);
-    formData.append("folder", "custom");
+    formData.append("folder", folder);
 
     fetch("http://localhost:3000/photos/upload", {method: 'post', body: formData})
         .then((response) => response.json())
-        .then((json) => console.log(json))
+        .then((json) => {
+            console.log(json);
+            dispatch({
+                type: 'UPLOAD_FINISH',
+                uploadedFiles: json.files
+            })
+        })
 };
 
 export const loadAlbums = (dispatch) => {

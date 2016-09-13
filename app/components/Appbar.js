@@ -3,7 +3,6 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
-import {upload} from '../actions/UploadFileAction'
 
 class Appbar extends React.Component {
     constructor() {
@@ -13,7 +12,7 @@ class Appbar extends React.Component {
 
     upload() {
         if (this.props.files.length > 0) {
-            upload(this.props.files)
+            this.props.upload(this.props.files, this.props.selectedAlbum)
         }else{
             console.log("Please select at least 1 file!");
         }
