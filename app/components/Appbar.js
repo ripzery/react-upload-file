@@ -13,7 +13,7 @@ class Appbar extends React.Component {
 
     upload() {
         if (this.props.files.length > 0) {
-            upload("http://localhost:3000/photos/upload", this.props.files)
+            upload(this.props.files)
         }else{
             console.log("Please select at least 1 file!");
         }
@@ -24,7 +24,8 @@ class Appbar extends React.Component {
             <AppBar
                 title={<span >React Image Uploader</span>}
                 iconElementLeft={this.props.files.length === 0 ? null : <IconButton onClick={this.props.removeAll} ><NavigationClose /></IconButton>}
-                iconElementRight={<FlatButton label="Upload" type="submit" onClick={this.upload} />}
+                iconElementRight={
+                <FlatButton label="Upload" type="submit" onClick={this.upload} />}
             />
         );
     }

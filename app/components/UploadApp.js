@@ -2,7 +2,7 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import FileInput from '../containers/FileInputContainer'
 import AppBar from '../containers/AppbarContainer'
-import {fullBlack} from 'material-ui/styles/colors';
+import Album from '../containers/AlbumContainer'
 
 const styles = {
     textCenter: {textAlign: 'center'},
@@ -12,6 +12,7 @@ const styles = {
 const UploadApp = () => (
     <div style={styles.textCenter}>
         <AppBar />
+        <Album />
         <FileInput />
     </div>
 );
