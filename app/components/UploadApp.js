@@ -3,6 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FileInput from '../containers/FileInputContainer'
 import AppBar from '../containers/AppbarContainer'
 import Album from '../containers/AlbumContainer'
+import Notification from '../containers/NotificationContainer'
 
 const styles = {
     textCenter: {textAlign: 'center'},
@@ -14,6 +15,7 @@ const UploadApp = () => (
         <AppBar />
         <Album />
         <FileInput />
+        <Notification />
     </div>
 );
 
