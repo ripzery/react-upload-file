@@ -39,7 +39,7 @@ export const upload = (files, folder, dispatch) => {
 
     console.log(files);
 
-    fetch("http://localhost:3000/photos/upload", {method: 'post', body: formData})
+    fetch("http://blog.ripzery.com:3000/photos/upload", {method: 'post', body: formData})
         .then((response) => response.json())
         .then((json) => {
             console.log(json);
@@ -51,7 +51,7 @@ export const upload = (files, folder, dispatch) => {
 };
 
 export const loadAlbums = (dispatch) => {
-    fetch("http://localhost:3000/api2/getTypes", {method: 'post'})
+    fetch("http://blog.ripzery.com:3000/api2/getTypes", {method: 'post'})
         .then((response) => response.json())
         .then((json) => {
             console.log(json);
