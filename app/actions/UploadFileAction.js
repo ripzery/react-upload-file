@@ -8,6 +8,13 @@ export const selectedFiles = (files, previewFiles) => {
     }
 };
 
+export const selectedAlbum = (album) => {
+    return {
+        type: 'SELECTED_ALBUM',
+        selectedAlbum: album
+    }
+};
+
 export const removeAllFile = () => {
     return {
         type: 'REMOVE_FILE',
@@ -20,12 +27,35 @@ export const init = () => {
     return {
         type: 'INIT',
         files: [],
-        previewFiles: []
+        previewFiles: [],
+        albums: []
     }
-}
+};
 
-export const fetchGalleryTypes = (url, formData) => {
-    fetch(url, {method: 'post', body: formData})
+export const upload = (files, folder, dispatch) => {
+    let formData = new FormData();
+    files.reduce((a, file) => formData.append("photos", file), files[0]);
+    formData.append("folder", folder);
+
+    fetch("http://blog.ripzery:3000/upload/upload", {method: 'post', body: formData})
         .then((response) => response.json())
-        .then((json) => console.log(json))
+        .then((json) => {
+            console.log(json);
+            dispatch({
+                type: 'UPLOAD_FINISH',
+                uploadedFiles: json.files
+            })
+        })
+};
+
+export const loadAlbums = (dispatch) => {
+    fetch("http://blog.ripzery.com:3000/api2/getTypes", {method: 'post'})
+        .then((response) => response.json())
+        .then((json) => {
+            console.log(json);
+            dispatch({
+                type: 'LOAD_ALBUM',
+                albums: json.folders
+            })
+        })
 };

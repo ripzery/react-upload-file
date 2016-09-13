@@ -3,6 +3,7 @@ import Dropzone from 'react-dropzone'
 import {ReactRpg} from 'react-rpg';
 import Paper from 'material-ui/Paper';
 import {selectedFiles} from '../actions/UploadFileAction'
+import {lightWhite, minBlack, lightBlack, darkBlack} from 'material-ui/styles/colors';
 
 const styles = {
     dropZoneEmpty: {
@@ -10,6 +11,7 @@ const styles = {
         minHeight: "200px",
         height: "100%",
         overflow: "auto",
+        backgroundColor: minBlack,
         border: "2px dashed rgb(102, 102, 102)",
         borderRadius: 5,
         margin: "auto",
@@ -20,6 +22,7 @@ const styles = {
         width: "98%",
         minHeight: "200px",
         height: "100%",
+        backgroundColor: minBlack,
         overflow: "auto",
         border: "2px dashed rgb(102, 102, 102)",
         borderRadius: 5,
@@ -35,6 +38,9 @@ const styles = {
         margin: 20,
         textAlign: 'center',
         display: 'inline-block'
+    },
+    textWhite: {
+        color: "#fff"
     }
 };
 
@@ -45,19 +51,20 @@ class FileInput extends React.Component {
     }
 
     onDrop(files) {
-        let newFiles = files.map(function(file) {
+        let newFiles = files.map(function (file) {
             return {...file, url: file.preview}
         });
         this.props.dispatch(selectedFiles(files, newFiles));
     }
     render() {
         return (
-            <Dropzone onDrop={this.onDrop} style={this.props.previewFiles.length > 0 ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
-                <div >
+            <Dropzone onDrop={this.onDrop}
+                      style={this.props.previewFiles.length > 0 ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
+                <div style={styles.textWhite}>
                     { this.props.previewFiles.length > 0
                         ? <FileDetail
                         files={this.props.previewFiles}/>
-                        : <h1>Drop, or select image here</h1>}
+                        : <p className="flow-text">DROP OR SELECT</p>}
                 </div>
             </Dropzone>
 
@@ -67,7 +74,7 @@ class FileInput extends React.Component {
 
 const FileDetail = ({files}) => (
     <div style={styles.marginTop16}>
-        <h3>Total {files.length} images</h3>
+        <p style={styles.textWhite} className="flow-text">Total {files.length} images</p>
         <ReactRpg imagesArray={files} columns={[ 1, 2, 5 ]} padding={10}/>
     </div>
 );
