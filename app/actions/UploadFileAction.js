@@ -28,7 +28,8 @@ export const init = () => {
         type: 'INIT',
         files: [],
         previewFiles: [],
-        albums: []
+        albums: [],
+        uploadedFiles: []
     }
 };
 
@@ -47,6 +48,7 @@ export const upload = (files, folder, dispatch) => {
                 type: 'UPLOAD_FINISH',
                 uploadedFiles: json.files
             })
+            loadAlbums(dispatch)
         })
 };
 

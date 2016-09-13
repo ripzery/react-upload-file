@@ -1,11 +1,13 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
+import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 class Notification extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: true
+            open: false
         };
     }
     
@@ -15,8 +17,14 @@ class Notification extends React.Component {
         });
     };
 
+    componentWillReceiveProps(nextProps){
+        console.log(nextProps);
+        this.setState({
+            open: nextProps.uploadedFiles.length > 0
+        });
+    }
+
     render(){
-        this.state.open = this.props.uploadedFiles.length > 0;
         return (
             <Snackbar
                 open={this.state.open}
@@ -27,5 +35,9 @@ class Notification extends React.Component {
         )
     }
 }
+
+Notification.childContextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};
 
 export default Notification

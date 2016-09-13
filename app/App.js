@@ -9,8 +9,7 @@ import Uploader from './components/UploadApp'
 const muiTheme = getMuiTheme({
     fontFamily: 'Roboto, sans-serif',
     palette: {
-        primary1Color: teal500,
-        textColor: fullWhite
+        primary1Color: teal500
     },
     appBar: {
         height: 80
