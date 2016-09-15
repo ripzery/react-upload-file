@@ -4,6 +4,7 @@ import FileInput from '../containers/FileInputContainer'
 import AppBar from '../containers/AppbarContainer'
 import Album from '../containers/AlbumContainer'
 import Notification from '../containers/NotificationContainer'
+import ProgressLoading from './ProgressLoading'
 
 const styles = {
     textCenter: {textAlign: 'center'},
@@ -16,6 +17,7 @@ const UploadApp = () => (
         <Album />
         <FileInput />
         <Notification />
+        <ProgressLoading />
     </div>
 );
 
