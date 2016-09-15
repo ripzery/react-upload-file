@@ -17,7 +17,6 @@ const UploadApp = () => (
         <Album />
         <FileInput />
         <Notification />
-        <ProgressLoading />
     </div>
 );
 

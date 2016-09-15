@@ -4,11 +4,11 @@ import MenuItem from 'material-ui/MenuItem';
 import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
+import ProgressLoading from './ProgressLoading'
 
 const styles = {
     textWhite: {
         color: "#fff",
-        float: "left",
         margin: 16
     },
     customWidth: {
@@ -70,7 +70,6 @@ class Album extends React.Component {
                         floatingLabelText="Album name"
                     /> : null}
                 </div>
-
             </div>
         )
     }
