@@ -12,7 +12,8 @@ class Appbar extends React.Component {
         this.upload = this.upload.bind(this);
         this.state = {
             count: 0,
-            title: "React Uploader"
+            title: "React Uploader",
+            uploading: false
         };
         this.startUploadingProgress = this.startUploadingProgress.bind(this);
         this.stopUploadingProgress = this.stopUploadingProgress.bind(this);
@@ -20,7 +21,7 @@ class Appbar extends React.Component {
     }
 
     upload() {
-        if (this.props.files.upload.length > 0) {
+        if (this.props.files.upload.length > 0 && !this.state.uploading) {
             this.props.upload(this.props.files, this.props.selectedAlbum);
             this.startUploadingProgress()
         } else {
@@ -29,16 +30,18 @@ class Appbar extends React.Component {
     }
 
     startUploadingProgress() {
-        this.progress = setInterval(this.tick, 1000)
+        this.progress = setInterval(this.tick, 1000);
         this.setState({
-            title: "กำลังอัพโหลด"
+            title: "กำลังอัพโหลด",
+            uploading: true
         })
     }
 
     stopUploadingProgress() {
         clearInterval(this.progress);
         this.setState({
-            title: "เย้เสร็จแล้ว!!"
+            title: "เย้เสร็จแล้ว!!",
+            uploading: false
         });
         setTimeout(() => {
             this.setState({title: "React Uploader"})
@@ -46,7 +49,7 @@ class Appbar extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.uploadedFiles.length > 0) {
+        if (nextProps.uploadedFiles.length > 0 && this.state.uploading) {
             this.stopUploadingProgress()
         }
     }
@@ -71,7 +74,7 @@ class Appbar extends React.Component {
                 title={<span >{this.state.title}</span>}
                 iconElementLeft={this.props.files.length === 0 ? null : <IconButton onClick={this.props.removeAll} ><NavigationClose /></IconButton>}
                 iconElementRight={
-                <FlatButton label="Upload" type="submit" onClick={this.upload} />}
+                <FlatButton label={this.state.uploading ? "Uploading..." : "Upload"} type="submit" onClick={this.upload} disabled={this.state.uploading}/>}
             />
         );
     }
