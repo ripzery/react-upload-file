@@ -4,7 +4,6 @@ import MenuItem from 'material-ui/MenuItem';
 import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
-import ProgressLoading from './ProgressLoading'
 
 const styles = {
     textWhite: {

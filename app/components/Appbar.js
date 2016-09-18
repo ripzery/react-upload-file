@@ -3,8 +3,6 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import FlatButton from 'material-ui/FlatButton';
-import ProgressLoading from './ProgressLoading'
-import CircularProgress from 'material-ui/CircularProgress';
 
 class Appbar extends React.Component {
     constructor() {

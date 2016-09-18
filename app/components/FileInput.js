@@ -1,11 +1,8 @@
 import React from 'react';
 import Dropzone from 'react-dropzone'
 import {ReactRpg} from 'react-rpg';
-import Paper from 'material-ui/Paper';
-import {selectedFiles} from '../actions/UploadFileAction'
 import {lightWhite, minBlack, lightBlack, darkBlack} from 'material-ui/styles/colors';
 import {Motion, spring} from 'react-motion';
-import Transition from 'react-motion-ui-pack'
 
 const styles = {
     dropZoneEmpty: {

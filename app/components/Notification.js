@@ -1,7 +1,5 @@
 import React from 'react';
 import Snackbar from 'material-ui/Snackbar';
-import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 class Notification extends React.Component {
     constructor(props) {
