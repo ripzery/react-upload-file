@@ -72,9 +72,9 @@ class Appbar extends React.Component {
         return (
             <AppBar
                 title={<span >{this.state.title}</span>}
-                iconElementLeft={this.props.files.length === 0 ? null : <IconButton onClick={this.props.removeAll} ><NavigationClose /></IconButton>}
+                iconElementLeft={this.props.files.upload.length === 0 ? null : <IconButton onClick={this.props.removeAll} disabled={this.state.uploading} ><NavigationClose /></IconButton>}
                 iconElementRight={
-                <FlatButton label={this.state.uploading ? "Uploading..." : "Upload"} type="submit" onClick={this.upload} disabled={this.state.uploading}/>}
+                <FlatButton label={this.state.uploading ? `Uploading to ${this.props.selectedAlbum}...` : "Upload"} type="submit" onClick={this.upload} disabled={this.state.uploading}/>}
             />
         );
     }

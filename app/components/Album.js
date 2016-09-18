@@ -50,6 +50,13 @@ class Album extends React.Component {
         this.props.selectedAlbum(event.target.value);
     };
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.albums.length > 0){
+            this.setState({value: 0});
+            this.props.selectedAlbum(nextProps.albums[0].name);
+        }
+    }
+
     render() {
         const albumList = this.props.albums.map((album, index) => <MenuItem key={index} value={index}
                                                                             primaryText={album.name.toUpperCase()}/>);

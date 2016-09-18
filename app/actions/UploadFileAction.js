@@ -18,8 +18,9 @@ export const toggleFile = (files) => {
 };
 
 export const selectedAlbum = (album) => {
+    console.log(album);
     return {
-        type: 'SELECTED_ALBUM',
+        type: 'SELECT_ALBUM',
         selectedAlbum: album
     }
 };
