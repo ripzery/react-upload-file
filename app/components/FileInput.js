@@ -2,7 +2,6 @@ import React from 'react';
 import Dropzone from 'react-dropzone'
 import {ReactRpg} from 'react-rpg';
 import {lightWhite, minBlack, lightBlack, darkBlack} from 'material-ui/styles/colors';
-import {Motion, spring} from 'react-motion';
 
 const styles = {
     dropZoneEmpty: {
