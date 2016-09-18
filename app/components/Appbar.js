@@ -20,7 +20,7 @@ class Appbar extends React.Component {
     }
 
     upload() {
-        if (this.props.files.length > 0) {
+        if (this.props.files.upload.length > 0) {
             this.props.upload(this.props.files, this.props.selectedAlbum);
             this.startUploadingProgress()
         } else {

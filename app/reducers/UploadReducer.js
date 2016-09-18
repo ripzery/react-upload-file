@@ -4,11 +4,7 @@ import {combineReducers} from 'redux'
 const uploadedFiles = (state = [], action) => {
     switch (action.type) {
         case "UPLOAD_FINISH":
-            return {
-                ...state,
-                uploadedFiles: action.uploadedFiles
-            };
-            break;
+            return action.uploadedFiles;
         default:
             return state
     }
