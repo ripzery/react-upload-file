@@ -5,7 +5,7 @@ import {selectedAlbum} from '../actions/UploadFileAction';
 
 const mapStateToProps = (state) => {
     return {
-        albums: state.UploadReducer.albums
+        albums: state.albums
     }
 };
 

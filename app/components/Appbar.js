@@ -40,7 +40,9 @@ class Appbar extends React.Component {
         this.setState({
             title: "เย้เสร็จแล้ว!!"
         });
-        setTimeout(() => {this.setState({title: "React Uploader"})}, 4000)
+        setTimeout(() => {
+            this.setState({title: "React Uploader"})
+        }, 4000)
     }
 
     componentWillReceiveProps(nextProps) {

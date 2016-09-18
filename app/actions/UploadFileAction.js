@@ -1,10 +1,19 @@
 import fetch from 'isomorphic-fetch'
 
-export const selectedFiles = (files, previewFiles) => {
+export const selectedFiles = (upload, preview) => {
     return {
         type: 'SELECTED_FILE',
-        files,
-        previewFiles
+        files: {
+            upload,
+            preview
+        }
+    }
+};
+
+export const toggleFile = (files) => {
+    return {
+        type: "TOGGLE_FILE",
+        files
     }
 };
 
@@ -18,16 +27,16 @@ export const selectedAlbum = (album) => {
 export const removeAllFile = () => {
     return {
         type: 'REMOVE_FILE',
-        files: [],
-        previewFiles: []
+        files: {preview: [], upload: []}
     }
 };
 
 export const init = () => {
     return {
-        type: 'INIT',
-        files: [],
-        previewFiles: [],
+        files: {
+            preview: [],
+            upload: []
+        },
         albums: [],
         uploadedFiles: []
     }
@@ -47,7 +56,7 @@ export const upload = (files, folder, dispatch) => {
             dispatch({
                 type: 'UPLOAD_FINISH',
                 uploadedFiles: json.files
-            })
+            });
             loadAlbums(dispatch)
         })
 };

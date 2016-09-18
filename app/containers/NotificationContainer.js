@@ -3,7 +3,7 @@ import Notification from '../components/Notification'
 
 const mapStateToProps = (state) => {
     return {
-        uploadedFiles: state.UploadReducer.uploadedFiles
+        uploadedFiles: state.uploadedFiles
     }
 };
 

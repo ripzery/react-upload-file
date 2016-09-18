@@ -1,39 +1,58 @@
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux'
 
-const UploadReducer = (state = [], action) => {
-    switch(action.type){
-        case 'SELECTED_FILE':
-            return {
-                ...state,
-                ...action
-            };
-        case 'SELECTED_ALBUM':
-            return {
-                ...state,
-                ...action
-            };
-        case 'REMOVE_FILE':
-            return {
-                ...state,
-                ...action
-            };
-        case 'UPLOAD_FINISH':
+/* state is contain only uploadedFiles array-property */
+const uploadedFiles = (state = [], action) => {
+    switch (action.type) {
+        case "UPLOAD_FINISH":
             return {
                 ...state,
                 uploadedFiles: action.uploadedFiles
             };
-        case 'INIT':
-            return {
-                ...action
-            };
-        case 'LOAD_ALBUM':
-            return {
-                ...state,
-                ...action
-            };
+            break;
         default:
             return state
     }
 };
 
-export default combineReducers({UploadReducer})
+const files = (state = {preview: [], upload: []}, action) => {
+    switch (action.type) {
+        case "SELECTED_FILE":
+            return {
+                ...state,
+                ...action.files
+            };
+        case "TOGGLE_FILE":
+            /* TODO: refactor logic */
+            return {
+                ...state,
+                action
+            };
+        case "REMOVE_FILE":
+            return {
+                preview: [],
+                upload: []
+            };
+        default :
+            return state
+    }
+};
+
+const selectedAlbum = (state = "", action) => {
+    switch (action.type) {
+        case "SELECT_ALBUM":
+            return action.selectedAlbum;
+        default :
+            return state
+    }
+};
+
+const albums = (state = [], action) => {
+    switch (action.type) {
+        case "LOAD_ALBUM":
+            return action.albums;
+        default:
+            return state
+    }
+};
+
+export default combineReducers({uploadedFiles, files, selectedAlbum, albums})

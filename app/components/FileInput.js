@@ -4,6 +4,8 @@ import {ReactRpg} from 'react-rpg';
 import Paper from 'material-ui/Paper';
 import {selectedFiles} from '../actions/UploadFileAction'
 import {lightWhite, minBlack, lightBlack, darkBlack} from 'material-ui/styles/colors';
+import {Motion, spring} from 'react-motion';
+import Transition from 'react-motion-ui-pack'
 
 const styles = {
     dropZoneEmpty: {
@@ -47,24 +49,51 @@ const styles = {
 class FileInput extends React.Component {
     constructor() {
         super();
-        this.onDrop = this.onDrop.bind(this)
+        this.onDrop = this.onDrop.bind(this);
+        this.onSelectedFile = this.onSelectedFile.bind(this);
     }
 
     onDrop(files) {
         let newFiles = files.map(function (file) {
-            return {...file, url: file.preview}
-        });
+            return {
+                ...file, url: file.preview, isSelected: false, clickHandler: (url, obj) => {
+                    // obj.stopPropagation()
+                    var isSelected = obj.target.style.opacity === "";
+                    obj.target.style.opacity = isSelected ? 0.3 : "";
+                    obj.target.style.filter = isSelected ? "alpha(opacity=50)" : "alpha(opacity=100)";
+                    file.isSelected = isSelected;
+                    this.onSelectedFile(files.indexOf(file), file, files, newFiles)
+                }
+            }
+        }, this);
+        
         this.props.dispatch(selectedFiles(files, newFiles));
     }
+
+    onSelectedFile(index, file, files, newFiles) {
+        files[index].isSelected = file.isSelected;
+        newFiles[index].isSelected = file.isSelected;
+        this.props.dispatch(selectedFiles(files, newFiles));
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log(nextProps);
+        this.setState({
+
+        });
+    }
+
     render() {
+        console.log(this.props.files.preview);
         return (
-            <Dropzone onDrop={this.onDrop}
-                      style={this.props.previewFiles.length > 0 ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
+            <Dropzone onDrop={this.onDrop} accept="image/*" disableClick={this.props.files.preview.length > 0}
+                      style={this.props.files.preview.length > 0 ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
                 <div style={styles.textWhite}>
-                    { this.props.previewFiles.length > 0
+                    { this.props.files.preview.length > 0
                         ? <FileDetail
-                        files={this.props.previewFiles}/>
+                        files={this.props.files.preview}/>
                         : <p className="flow-text">DROP OR SELECT</p>}
+
                 </div>
             </Dropzone>
 
@@ -74,9 +103,10 @@ class FileInput extends React.Component {
 
 const FileDetail = ({files}) => (
     <div style={styles.marginTop16}>
-        <p style={styles.textWhite} className="flow-text">Total {files.length} images</p>
-        <ReactRpg imagesArray={files} columns={[ 1, 2, 5 ]} padding={10}/>
+        <p style={styles.textWhite} className="flow-text">Total {files.filter((t) => !t.isSelected).length} images</p>
+        <ReactRpg imagesArray={files} columns={[ 1, 2, 5 ]} padding={16}/>
     </div>
+
 );
 
 

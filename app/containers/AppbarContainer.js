@@ -4,9 +4,9 @@ import {removeAllFile, upload} from '../actions/UploadFileAction'
 
 const mapStateToProps = (state) => {
     return {
-        files: state.UploadReducer.files,
-        selectedAlbum: state.UploadReducer.selectedAlbum,
-        uploadedFiles: state.UploadReducer.uploadedFiles
+        files: state.files,
+        uploadedFiles: state.uploadedFiles,
+        selectedAlbum: state.selectedAlbum
     }
 };
 
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(removeAllFile())
         },
         upload: (files, folder) => {
-            upload(files, folder, dispatch)
+            upload(files.upload, folder, dispatch)
         }
     }
 };
