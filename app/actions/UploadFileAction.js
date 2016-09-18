@@ -10,10 +10,13 @@ export const selectedFiles = (upload, preview) => {
     }
 };
 
-export const toggleFile = (files) => {
+export const toggleFile = (upload, preview) => {
     return {
         type: "TOGGLE_FILE",
-        files
+        files: {
+            upload,
+            preview
+        }
     }
 };
 

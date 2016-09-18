@@ -21,7 +21,7 @@ const files = (state = {preview: [], upload: []}, action) => {
             /* TODO: refactor logic */
             return {
                 ...state,
-                action
+                ...action.files
             };
         case "REMOVE_FILE":
             return {

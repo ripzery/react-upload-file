@@ -59,28 +59,25 @@ class FileInput extends React.Component {
                 ...file, url: file.preview, isSelected: false, clickHandler: (url, obj) => {
                     // obj.stopPropagation()
                     var isSelected = obj.target.style.opacity === "";
-                    obj.target.style.opacity = isSelected ? 0.3 : "";
-                    obj.target.style.filter = isSelected ? "alpha(opacity=50)" : "alpha(opacity=100)";
+                    obj.target.style.opacity = isSelected ? 0.2 : "";
+                    obj.target.style.filter = isSelected ? "alpha(opacity=20)" : "alpha(opacity=100)";
                     file.isSelected = isSelected;
                     this.onSelectedFile(files.indexOf(file), file, files, newFiles)
                 }
             }
         }, this);
-        
-        this.props.dispatch(selectedFiles(files, newFiles));
+
+        this.props.selectedFiles(files, newFiles);
     }
 
     onSelectedFile(index, file, files, newFiles) {
         files[index].isSelected = file.isSelected;
         newFiles[index].isSelected = file.isSelected;
-        this.props.dispatch(selectedFiles(files, newFiles));
+        this.props.toggle(files, newFiles);
     }
 
-    componentWillReceiveProps(nextProps){
-        console.log(nextProps);
-        this.setState({
-
-        });
+    componentWillReceiveProps(nextProps) {
+        this.setState({});
     }
 
     render() {

@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(removeAllFile())
         },
         upload: (files, folder) => {
-            upload(files.upload, folder, dispatch)
+            upload(files, folder, dispatch)
         }
     }
 };

@@ -21,8 +21,8 @@ class Appbar extends React.Component {
     }
 
     upload() {
-        if (this.props.files.upload.length > 0 && !this.state.uploading) {
-            this.props.upload(this.props.files, this.props.selectedAlbum);
+        if (this.props.files.upload.filter((t) => !t.isSelected).length > 0 && !this.state.uploading) {
+            this.props.upload(this.props.files.upload.filter((t) => !t.isSelected), this.props.selectedAlbum);
             this.startUploadingProgress()
         } else {
             console.log("Please select at least 1 file!");
@@ -74,7 +74,7 @@ class Appbar extends React.Component {
                 title={<span >{this.state.title}</span>}
                 iconElementLeft={this.props.files.upload.length === 0 ? null : <IconButton onClick={this.props.removeAll} disabled={this.state.uploading} ><NavigationClose /></IconButton>}
                 iconElementRight={
-                <FlatButton label={this.state.uploading ? `Uploading to ${this.props.selectedAlbum}...` : "Upload"} type="submit" onClick={this.upload} disabled={this.state.uploading}/>}
+                <FlatButton label={this.state.uploading ? `Uploading (${this.props.files.upload.filter((t) => !t.isSelected).length}) to ${this.props.selectedAlbum}...` : "Upload"} type="submit" onClick={this.upload} disabled={this.state.uploading}/>}
             />
         );
     }
