@@ -18,7 +18,7 @@ const files = (state = {preview: [], upload: []}, action) => {
                 ...action.files
             };
         case "TOGGLE_FILE":
-            /* TODO: refactor logic na */
+            /* TODO: refactor logic naja */
             return {
                 ...state,
                 ...action.files
