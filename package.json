@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.dev.js",
-    "deploy": "npm install && NODE_ENV=production webpack -p --config webpack.production.config.js && git add . && printf \"Please enter commit message : \" && read msg && git commit -m \"$msg\" && git push live master",
-    "deploy2": "npm install && NODE_ENV=production webpack -p --config webpack.production.config.js && git add . && printf \"Please enter commit message : \" && read msg && git commit -m \"$msg\" && git push origin master"
+    "deploy": "npm install && NODE_ENV=production webpack -p --config webpack.production.config.js && git add . && printf \"Please enter commit message : \" && read msg && git commit -m \"$msg\" && git push origin master"
   },
   "repository": {
     "type": "git",
