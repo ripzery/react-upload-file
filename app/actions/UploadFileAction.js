@@ -53,7 +53,7 @@ export const upload = (files, folder, dispatch) => {
 
     console.log(files);
 
-    fetch("https://api.ripzery.me/photos/upload", {method: 'post', body: formData})
+    fetch("https://api.ripzery.me/upload", {method: 'post', body: formData})
         .then((response) => response.json())
         .then((json) => {
             console.log(json);
