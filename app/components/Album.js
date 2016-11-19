@@ -4,6 +4,7 @@ import MenuItem from 'material-ui/MenuItem';
 import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 const styles = {
     textWhite: {
@@ -14,7 +15,8 @@ const styles = {
         width: 100
     },
     inline: {
-        display: "inline-block"
+        display: "inline-block",
+        fontSize: "20px"
     },
     textMargin16: {
         marginLeft: 16
@@ -58,18 +60,19 @@ class Album extends React.Component {
 
     render() {
         const albumList = this.props.albums.map((album, index) => <MenuItem key={index} value={index}
+                                                                            style={{fontFamily: this.props.muiTheme.fontFamily}}
                                                                             primaryText={album.name.toUpperCase()}/>);
-        albumList.push(<MenuItem key={albumList.length} value={albumList.length} primaryText="OR CREATE AN ALBUM =>"/>);
+        albumList.push(<MenuItem key={albumList.length} style={{fontFamily: this.props.muiTheme.fontFamily}} value={albumList.length} primaryText="OR CREATE AN ALBUM =>"/>);
         return (
             <div style={styles.textWhite}>
-                <h5 className="flow-text" style={styles.inline}>Upload to album... : </h5>
-                <SelectField value={this.state.value} style={styles.textMargin16} autoWidth={true}
+                <span style={{...styles.inline,fontFamily: this.props.muiTheme.fontFamily}}>Upload to album : </span>
+                <SelectField value={this.state.value} style={{...styles.textMargin16, fontFamily: this.props.muiTheme.fontFamily}} autoWidth={true}
                              onChange={this.handleChange}>
                     {albumList}
                 </SelectField>
-                <div style={styles.inline}>
+                <div style={{...styles.inline, fontFamily: this.props.muiTheme.fontFamily}}>
                     {this.state.value === this.props.albums.length ? <TextField
-                        style={styles.customTextField}
+                        style={{...styles.customTextField, fontFamily: this.props.muiTheme.fontFamily}}
                         hintText="Album name..."
                         onChange={this.handleTextChange}
                         value={this.state.albumName}
@@ -85,4 +88,4 @@ Album.childContextTypes = {
     muiTheme: React.PropTypes.object.isRequired
 };
 
-export default Album
+export default muiThemeable()(Album)

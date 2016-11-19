@@ -7,7 +7,7 @@ import {teal500, fullWhite} from 'material-ui/styles/colors';
 import Uploader from './components/UploadApp'
 
 const muiTheme = getMuiTheme({
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily: 'Bungee, cursive',
     palette: {
         primary1Color: teal500
     },

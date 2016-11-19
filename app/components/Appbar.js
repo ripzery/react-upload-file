@@ -72,7 +72,7 @@ class Appbar extends React.Component {
     render() {
         return (
             <AppBar
-                title={<span >{this.state.title}</span>}
+                title={<span style={{fontSize: "36px"}}><b>{this.state.title}</b></span>}
                 iconElementLeft={this.props.files.upload.length === 0 ? <IconButton onClick={this.props.openDrawer} ><NavigationMenu color={fullWhite}/></IconButton> :
                     <IconButton onClick={this.props.removeAll} disabled={this.state.uploading}><NavigationClose /></IconButton>}
                 iconElementRight={

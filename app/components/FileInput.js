@@ -2,6 +2,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone'
 import {ReactRpg} from 'react-rpg';
 import {lightWhite, minBlack, lightBlack, darkBlack} from 'material-ui/styles/colors';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 const styles = {
     dropZoneEmpty: {
@@ -38,13 +39,14 @@ const styles = {
         display: 'inline-block'
     },
     textWhite: {
-        color: "#fff"
+        color: "#fff",
+        fontSize: "24px"
     }
 };
 
 class FileInput extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.onDrop = this.onDrop.bind(this);
         this.onSelectedFile = this.onSelectedFile.bind(this);
     }
@@ -84,8 +86,9 @@ class FileInput extends React.Component {
                 <div style={styles.textWhite}>
                     { this.props.files.preview.length > 0
                         ? <FileDetail
-                        files={this.props.files.preview}/>
-                        : <p className="flow-text">DROP OR SELECT</p>}
+                        files={this.props.files.preview}
+                        font={this.props.muiTheme.fontFamily}/>
+                        : <span style={{fontSize: "24px", fontFamily: this.props.muiTheme.fontFamily}}>DROP OR SELECT</span>}
 
                 </div>
             </Dropzone>
@@ -94,13 +97,12 @@ class FileInput extends React.Component {
     }
 }
 
-const FileDetail = ({files}) => (
+const FileDetail = ({files, font}) => (
     <div style={styles.marginTop16}>
-        <p style={styles.textWhite} className="flow-text">Total {files.filter((t) => !t.isSelected).length} images</p>
+        <span style={{...styles.textWhite, fontFamily: font}}>Upload {files.filter((t) => !t.isSelected).length} images</span>
         <ReactRpg imagesArray={files} columns={[ 1, 2, 5 ]} padding={16}/>
     </div>
-
 );
 
 
-export default FileInput
+export default muiThemeable()(FileInput)
