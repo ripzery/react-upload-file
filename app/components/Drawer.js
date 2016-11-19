@@ -49,8 +49,8 @@ class AppDrawer extends React.Component {
                     </span>
                 </div>
                 <Menu onItemTouchTap={this.handleChangePage}>
-                    <MenuItem primaryText={"Upload"} style={{color: "white"}} leftIcon={<ActionBackup color="white" />}/>
-                    <MenuItem leftIcon={<ImagesPhotoAlbum color="white"/>} style={{color: "white"}} primaryText={"Gallery"}/>
+                    <MenuItem primaryText={"Upload"} style={(this.props.page == 0) ? {color: amber300} : {color: "white"}} leftIcon={<ActionBackup color={(this.props.page == 0) ? amber300 : "white"} />}/>
+                    <MenuItem leftIcon={<ImagesPhotoAlbum color={(this.props.page == 1) ? amber300 : "white"}/>} style={(this.props.page == 1) ? {color: amber300} : {color: "white"}} primaryText={"Gallery"}/>
                 </Menu>
                 <div style={{position: "absolute", bottom: 0,width:"100%", marginBottom:16}}>
                     <Linker url="https://github.com/ripzery/react-upload-file/tree/develop" mouseLeaveColor={teal300} title="Go to Github" />
