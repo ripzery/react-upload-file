@@ -1,12 +1,13 @@
 import {connect} from 'react-redux'
 import Appbar from '../components/Appbar'
-import {removeAllFile, upload, openDrawer} from '../actions/UploadFileAction'
+import {removeAllFile, upload, openDrawer, loadPhotos} from '../actions/UploadFileAction'
 
 const mapStateToProps = (state) => {
     return {
         files: state.files,
         uploadedFiles: state.uploadedFiles,
         selectedAlbum: state.selectedAlbum,
+        albums: state.albums,
         page: state.page
     }
 };
@@ -21,6 +22,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         openDrawer: () => {
             dispatch(openDrawer())
+        },
+        loadPhotos: (album) => {
+            loadPhotos(album, dispatch)
         }
     }
 };

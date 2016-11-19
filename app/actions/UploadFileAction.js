@@ -86,3 +86,17 @@ export const loadAlbums = (dispatch) => {
             })
         })
 };
+
+export const loadPhotos = (album, dispatch) => {
+    console.log("Loading url : " + "https://api.ripzery.me/images?type="+album);
+    fetch("https://api.ripzery.me/images?type="+album, {method: 'get'})
+        .then((response) => response.json())
+        .then((json) => {
+            console.log(json);
+            let concatePhotosUrl = json.images.map((photo, index) => ({url: "https://api.ripzery.me"+json.rootPath+photo.name}));
+            dispatch({
+                type: 'LOAD_PHOTOS',
+                photos: concatePhotosUrl
+            })
+        })
+};

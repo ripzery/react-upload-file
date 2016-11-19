@@ -71,5 +71,14 @@ const drawer = (state = false, action) => {
     }
 };
 
+const gallery = (state = [], action) => {
+    switch (action.type){
+        case "LOAD_PHOTOS":
+            return action.photos;
+        default:
+            return state;
+    }
+};
 
-export default combineReducers({drawer, page, uploadedFiles, files, selectedAlbum, albums})
+
+export default combineReducers({gallery, drawer, page, uploadedFiles, files, selectedAlbum, albums})

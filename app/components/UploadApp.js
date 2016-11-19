@@ -3,6 +3,7 @@ import AppDrawer from '../containers/AppDrawerContainer'
 import FileInput from '../containers/FileInputContainer'
 import AppBar from '../containers/AppbarContainer'
 import Album from '../containers/AlbumContainer'
+import Gallery from '../containers/GalleryContainer'
 import {fullWhite} from 'material-ui/styles/colors'
 import Notification from '../containers/NotificationContainer'
 
@@ -24,12 +25,6 @@ const Upload = () => (
         <Album />
         <FileInput />
         <Notification />
-    </div>
-);
-
-const Gallery = () => (
-    <div>
-        Gallery
     </div>
 );
 

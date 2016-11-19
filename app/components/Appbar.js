@@ -5,6 +5,8 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import {fullWhite} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 import AppDrawer from './Drawer'
 
 class Appbar extends React.Component {
@@ -14,10 +16,12 @@ class Appbar extends React.Component {
         this.state = {
             count: 0,
             title: "React Uploader",
-            uploading: false
+            uploading: false,
+            selectAlbum: 0
         };
         this.startUploadingProgress = this.startUploadingProgress.bind(this);
         this.stopUploadingProgress = this.stopUploadingProgress.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.tick = this.tick.bind(this);
     }
 
@@ -59,6 +63,11 @@ class Appbar extends React.Component {
         this.stopUploadingProgress();
     }
 
+    handleChange(event, index, value) {
+        this.setState({selectAlbum: value});
+        this.props.loadPhotos(this.props.albums[value].name);
+    }
+
     tick() {
         this.setState({
             count: this.state.count + 1
@@ -70,17 +79,24 @@ class Appbar extends React.Component {
     }
 
     render() {
+        const albumList = this.props.albums.map((album, index) => <MenuItem key={index} value={index}
+                                                                            primaryText={album.name.toUpperCase()}/>);
         return (
             <AppBar
                 title={<span style={{fontSize: "36px"}}><b>{this.state.title}</b></span>}
-                iconElementLeft={this.props.files.upload.length === 0 ? <IconButton onClick={this.props.openDrawer} ><NavigationMenu color={fullWhite}/></IconButton> :
-                    <IconButton onClick={this.props.removeAll} disabled={this.state.uploading}><NavigationClose /></IconButton>}
+                iconElementLeft={this.props.files.upload.length === 0 ?
+                    <IconButton onClick={this.props.openDrawer}><NavigationMenu color={fullWhite}/></IconButton> :
+                    <IconButton onClick={this.props.removeAll}
+                                disabled={this.state.uploading}><NavigationClose /></IconButton>}
                 iconElementRight={
                     this.props.page == 0 ?
-                    <FlatButton
-                        label={this.state.uploading ? `Uploading (${this.props.files.upload.filter((t) => !t.isSelected).length}) to ${this.props.selectedAlbum}...` : "Upload"}
-                        type="submit" onClick={this.upload} disabled={this.state.uploading}/>
-                    : null
+                        <FlatButton
+                            label={this.state.uploading ? `Uploading (${this.props.files.upload.filter((t) => !t.isSelected).length}) to ${this.props.selectedAlbum}...` : "Upload"}
+                            type="submit" onClick={this.upload} disabled={this.state.uploading}/>
+                        :
+                        <DropDownMenu onChange={this.handleChange} value={this.state.selectAlbum}>
+                            {albumList}
+                        </DropDownMenu>
                 }
             />
         );
