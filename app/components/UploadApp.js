@@ -11,13 +11,25 @@ const styles = {
     marginTop16: {marginTop: 16}
 };
 
-const UploadApp = () => (
+const UploadApp = (props) => (
     <div style={styles.textCenter}>
         <AppDrawer />
         <AppBar />
+        {props.page == 0 ? <Upload /> : <Gallery />}
+    </div>
+);
+
+const Upload = () => (
+    <div>
         <Album />
         <FileInput />
         <Notification />
+    </div>
+);
+
+const Gallery = () => (
+    <div>
+        Gallery
     </div>
 );
 

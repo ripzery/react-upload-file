@@ -76,9 +76,12 @@ class Appbar extends React.Component {
                 iconElementLeft={this.props.files.upload.length === 0 ? <IconButton onClick={this.props.openDrawer} ><NavigationMenu color={fullWhite}/></IconButton> :
                     <IconButton onClick={this.props.removeAll} disabled={this.state.uploading}><NavigationClose /></IconButton>}
                 iconElementRight={
+                    this.props.page == 0 ?
                     <FlatButton
                         label={this.state.uploading ? `Uploading (${this.props.files.upload.filter((t) => !t.isSelected).length}) to ${this.props.selectedAlbum}...` : "Upload"}
-                        type="submit" onClick={this.upload} disabled={this.state.uploading}/>}
+                        type="submit" onClick={this.upload} disabled={this.state.uploading}/>
+                    : null
+                }
             />
         );
     }

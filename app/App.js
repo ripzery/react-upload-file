@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {fade} from 'material-ui/utils/colorManipulator';
 import {teal500, fullWhite} from 'material-ui/styles/colors';
-import Uploader from './components/UploadApp'
+import Uploader from './containers/UploadAppContainer'
 
 const muiTheme = getMuiTheme({
     fontFamily: 'Bungee, cursive',

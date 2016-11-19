@@ -6,7 +6,8 @@ const mapStateToProps = (state) => {
     return {
         files: state.files,
         uploadedFiles: state.uploadedFiles,
-        selectedAlbum: state.selectedAlbum
+        selectedAlbum: state.selectedAlbum,
+        page: state.page
     }
 };
 
