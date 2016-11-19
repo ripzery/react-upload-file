@@ -51,4 +51,25 @@ const albums = (state = [], action) => {
     }
 };
 
-export default combineReducers({uploadedFiles, files, selectedAlbum, albums})
+const page = (state = 0, action) => {
+    switch (action.type) {
+        case "CHANGE_PAGE":
+            return action.page;
+        default:
+            return state;
+    }
+};
+
+const drawer = (state = false, action) => {
+    switch (action.type) {
+        case "OPEN_DRAWER":
+            return action.open;
+        case "CLOSE_DRAWER":
+            return action.open;
+        default:
+            return state;
+    }
+};
+
+
+export default combineReducers({drawer, page, uploadedFiles, files, selectedAlbum, albums})

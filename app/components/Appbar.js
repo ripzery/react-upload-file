@@ -2,7 +2,10 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import {fullWhite} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
+import AppDrawer from './Drawer'
 
 class Appbar extends React.Component {
     constructor() {
@@ -70,9 +73,12 @@ class Appbar extends React.Component {
         return (
             <AppBar
                 title={<span >{this.state.title}</span>}
-                iconElementLeft={this.props.files.upload.length === 0 ? null : <IconButton onClick={this.props.removeAll} disabled={this.state.uploading} ><NavigationClose /></IconButton>}
+                iconElementLeft={this.props.files.upload.length === 0 ? <IconButton onClick={this.props.openDrawer} ><NavigationMenu color={fullWhite}/></IconButton> :
+                    <IconButton onClick={this.props.removeAll} disabled={this.state.uploading}><NavigationClose /></IconButton>}
                 iconElementRight={
-                <FlatButton label={this.state.uploading ? `Uploading (${this.props.files.upload.filter((t) => !t.isSelected).length}) to ${this.props.selectedAlbum}...` : "Upload"} type="submit" onClick={this.upload} disabled={this.state.uploading}/>}
+                    <FlatButton
+                        label={this.state.uploading ? `Uploading (${this.props.files.upload.filter((t) => !t.isSelected).length}) to ${this.props.selectedAlbum}...` : "Upload"}
+                        type="submit" onClick={this.upload} disabled={this.state.uploading}/>}
             />
         );
     }

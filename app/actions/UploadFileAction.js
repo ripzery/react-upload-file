@@ -1,5 +1,26 @@
 import fetch from 'isomorphic-fetch'
 
+export const changePage = (pageIndex) => {
+    return {
+        type: 'CHANGE_PAGE',
+        page: pageIndex
+    }
+};
+
+export const openDrawer = () => {
+    return {
+        type: 'OPEN_DRAWER',
+        open: true
+    }
+};
+
+export const closeDrawer = () => {
+    return {
+        type: 'CLOSE_DRAWER',
+        open: false
+    }
+};
+
 export const selectedFiles = (upload, preview) => {
     return {
         type: 'SELECTED_FILE',
@@ -32,17 +53,6 @@ export const removeAllFile = () => {
     return {
         type: 'REMOVE_FILE',
         files: {preview: [], upload: []}
-    }
-};
-
-export const init = () => {
-    return {
-        files: {
-            preview: [],
-            upload: []
-        },
-        albums: [],
-        uploadedFiles: []
     }
 };
 

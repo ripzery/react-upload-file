@@ -1,4 +1,5 @@
 import React from 'react';
+import AppDrawer from '../containers/AppDrawerContainer'
 import FileInput from '../containers/FileInputContainer'
 import AppBar from '../containers/AppbarContainer'
 import Album from '../containers/AlbumContainer'
@@ -11,6 +12,7 @@ const styles = {
 
 const UploadApp = () => (
     <div style={styles.textCenter}>
+        <AppDrawer />
         <AppBar />
         <Album />
         <FileInput />
