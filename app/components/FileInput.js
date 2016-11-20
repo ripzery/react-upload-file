@@ -1,7 +1,8 @@
 import React from 'react';
 import Dropzone from 'react-dropzone'
 import {ReactRpg} from 'react-rpg';
-import {lightWhite, minBlack, lightBlack, darkBlack} from 'material-ui/styles/colors';
+import {teal500, minBlack, lightBlack, darkBlack} from 'material-ui/styles/colors';
+import {fade} from 'material-ui/utils/colorManipulator'
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 const styles = {
@@ -21,7 +22,6 @@ const styles = {
         width: "98%",
         minHeight: "200px",
         height: "100%",
-        backgroundColor: minBlack,
         overflow: "auto",
         border: "2px dashed rgb(102, 102, 102)",
         borderRadius: 5,
@@ -49,6 +49,9 @@ class FileInput extends React.Component {
         super(props);
         this.onDrop = this.onDrop.bind(this);
         this.onSelectedFile = this.onSelectedFile.bind(this);
+        this.state = {
+            progress: 0
+        }
     }
 
     onDrop(files) {
@@ -75,20 +78,26 @@ class FileInput extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({});
+        // this.setState({});
+        if(nextProps.waitingFiles && nextProps.folderToUpload){
+            upload(nextProps.waitingFiles, nextProps.folderToUpload, this.props.finishUpload, this.props.loadAlbums, this.props.reset, (pc) => {
+                console.log(this.state.progress);
+                this.setState({progress: pc != 100 ? pc : 0})
+            })
+        }
     }
 
     render() {
-        console.log(this.props.files.preview);
         return (
             <Dropzone onDrop={this.onDrop} accept="image/*" disableClick={this.props.files.preview.length > 0}
-                      style={this.props.files.preview.length > 0 ? styles.dropZoneNotEmpty : styles.dropZoneEmpty}>
+                      style={this.props.files.preview.length > 0 ? {...styles.dropZoneNotEmpty, background: `linear-gradient(90deg, ${fade(teal500, 0.5)} ${this.state.progress}%, ${minBlack} ${this.state.progress}%)`} : styles.dropZoneEmpty}>
                 <div style={styles.textWhite}>
                     { this.props.files.preview.length > 0
                         ? <FileDetail
                         files={this.props.files.preview}
                         font={this.props.muiTheme.fontFamily}/>
-                        : <span style={{fontSize: "24px", fontFamily: this.props.muiTheme.fontFamily}}>DROP OR SELECT</span>}
+                        :
+                        <span style={{fontSize: "24px", fontFamily: this.props.muiTheme.fontFamily}}>DROP OR SELECT</span>}
 
                 </div>
             </Dropzone>
@@ -103,6 +112,27 @@ const FileDetail = ({files, font}) => (
         <ReactRpg imagesArray={files} columns={[ 1, 2, 5 ]} padding={16}/>
     </div>
 );
+
+const upload = (files, folder, uploadDispatcher, loadAlbumDispatcher, resetDispatcher, progressListener) => {
+    let formData = new FormData();
+    files.reduce((a, file) => formData.append("photos", file), files[0]);
+    formData.append("folder", folder);
+    console.log(files);
+    var xhr = new XMLHttpRequest();
+    xhr.upload.addEventListener("progress", function (e) {
+        var pc = parseInt((e.loaded / e.total * 100));
+        progressListener(pc);
+    }, false);
+    xhr.onload = function () {
+        progressListener(100);
+        let json = JSON.parse(this.responseText);
+        uploadDispatcher(json.files);
+        resetDispatcher();
+        loadAlbumDispatcher();
+    };
+    xhr.open("POST", "https://api.ripzery.me/upload", true);
+    xhr.send(formData);
+};
 
 
 export default muiThemeable()(FileInput)

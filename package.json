@@ -34,6 +34,7 @@
     "react-dropzone": "^3.7.3",
     "react-grid-system": "^1.5.2",
     "react-redux": "^4.4.6",
+    "react-responsive": "^1.2.1",
     "react-rpg": "^2.0.0",
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",

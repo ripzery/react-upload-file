@@ -15,15 +15,13 @@ const styles = {
         width: 100
     },
     inline: {
-        display: "inline-block",
         fontSize: "20px"
     },
     textMargin16: {
         marginLeft: 16
     },
     customTextField: {
-        marginLeft: 16,
-        marginTop: -100
+        marginLeft: 16
     }
 }
 
@@ -62,7 +60,7 @@ class Album extends React.Component {
         const albumList = this.props.albums.map((album, index) => <MenuItem key={index} value={index}
                                                                             style={{fontFamily: this.props.muiTheme.fontFamily}}
                                                                             primaryText={album.name.toUpperCase()}/>);
-        albumList.push(<MenuItem key={albumList.length} style={{fontFamily: this.props.muiTheme.fontFamily}} value={albumList.length} primaryText="OR CREATE AN ALBUM =>"/>);
+        albumList.push(<MenuItem key={albumList.length} style={{fontFamily: this.props.muiTheme.fontFamily}} value={albumList.length} primaryText="CREATE AN ALBUM"/>);
         return (
             <div style={styles.textWhite}>
                 <span style={{...styles.inline,fontFamily: this.props.muiTheme.fontFamily}}>Upload to album : </span>
@@ -71,13 +69,16 @@ class Album extends React.Component {
                     {albumList}
                 </SelectField>
                 <div style={{...styles.inline, fontFamily: this.props.muiTheme.fontFamily}}>
-                    {this.state.value === this.props.albums.length ? <TextField
-                        style={{...styles.customTextField, fontFamily: this.props.muiTheme.fontFamily}}
-                        hintText="Album name..."
-                        onChange={this.handleTextChange}
-                        value={this.state.albumName}
-                        floatingLabelText="Album name"
-                    /> : null}
+                    {this.state.value === this.props.albums.length ?
+                        <TextField
+                            style={{...styles.customTextField, fontFamily: this.props.muiTheme.fontFamily}}
+                            hintText="Album name..."
+                            onChange={this.handleTextChange}
+                            value={this.state.albumName}
+                            floatingLabelText="Album name"/>
+                        :
+                        null
+                    }
                 </div>
             </div>
         )

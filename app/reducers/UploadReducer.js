@@ -10,6 +10,23 @@ const uploadedFiles = (state = [], action) => {
     }
 };
 
+const uploader = (state = {}, action) => {
+    switch (action.type) {
+        case "UPLOAD_START":
+            return {
+                ...state,
+                ...action
+            };
+        case "UPLOAD_RESET":
+            return {
+                ...state,
+                ...action
+            };
+        default:
+            return state
+    }
+};
+
 const files = (state = {preview: [], upload: []}, action) => {
     switch (action.type) {
         case "SELECTED_FILE":
@@ -81,4 +98,4 @@ const gallery = (state = [], action) => {
 };
 
 
-export default combineReducers({gallery, drawer, page, uploadedFiles, files, selectedAlbum, albums})
+export default combineReducers({uploader, gallery, drawer, page, uploadedFiles, files, selectedAlbum, albums})

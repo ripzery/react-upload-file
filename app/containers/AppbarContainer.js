@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import Appbar from '../components/Appbar'
-import {removeAllFile, upload, openDrawer, loadPhotos} from '../actions/UploadFileAction'
+import {removeAllFile, startUpload, openDrawer, loadPhotos} from '../actions/UploadFileAction'
 
 const mapStateToProps = (state) => {
     return {
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(removeAllFile())
         },
         upload: (files, folder) => {
-            upload(files, folder, dispatch)
+            dispatch(startUpload(files, folder, dispatch))
         },
         openDrawer: () => {
             dispatch(openDrawer())

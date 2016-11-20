@@ -56,24 +56,31 @@ export const removeAllFile = () => {
     }
 };
 
-export const upload = (files, folder, dispatch) => {
-    let formData = new FormData();
-    files.reduce((a, file) => formData.append("photos", file), files[0]);
-    formData.append("folder", folder);
-
-    console.log(files);
-
-    fetch("https://api.ripzery.me/upload", {method: 'post', body: formData})
-        .then((response) => response.json())
-        .then((json) => {
-            console.log(json);
-            dispatch({
-                type: 'UPLOAD_FINISH',
-                uploadedFiles: json.files
-            });
-            loadAlbums(dispatch)
-        })
+export const upload = (files) => {
+    return {
+        type: 'UPLOAD_FINISH',
+        uploadedFiles: files,
+        waitingFiles: [],
+        folderToUpload: []
+    };
 };
+
+export const startUpload = (files, folder) => {
+    return {
+        type: 'UPLOAD_START',
+        waitingFiles: files,
+        folderToUpload: folder
+    }
+};
+
+export const reset = () => {
+    return {
+        type: 'UPLOAD_RESET',
+        waitingFiles: [],
+        folderToUpload: null
+    }
+};
+
 
 export const loadAlbums = (dispatch) => {
     fetch("https://api.ripzery.me/getTypes", {method: 'post'})
@@ -88,12 +95,12 @@ export const loadAlbums = (dispatch) => {
 };
 
 export const loadPhotos = (album, dispatch) => {
-    console.log("Loading url : " + "https://api.ripzery.me/images?type="+album);
-    fetch("https://api.ripzery.me/images?type="+album, {method: 'get'})
+    console.log("Loading url : " + "https://api.ripzery.me/images?type=" + album);
+    fetch("https://api.ripzery.me/images?type=" + album, {method: 'get'})
         .then((response) => response.json())
         .then((json) => {
             console.log(json);
-            let concatePhotosUrl = json.images.map((photo, index) => ({url: "https://api.ripzery.me"+json.rootPath+photo.name}));
+            let concatePhotosUrl = json.images.map((photo, index) => ({url: "https://api.ripzery.me" + json.rootPath + photo.name}));
             dispatch({
                 type: 'LOAD_PHOTOS',
                 photos: concatePhotosUrl

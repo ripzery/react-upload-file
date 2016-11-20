@@ -7,7 +7,8 @@ import {fullWhite} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import AppDrawer from './Drawer'
+import MediaQuery from 'react-responsive';
+import AppDrawer from './Drawer';
 
 class Appbar extends React.Component {
     constructor() {
@@ -83,7 +84,16 @@ class Appbar extends React.Component {
                                                                             primaryText={album.name.toUpperCase()}/>);
         return (
             <AppBar
-                title={<span style={{fontSize: "36px"}}><b>{this.state.title}</b></span>}
+                title={
+                    <div>
+                        <MediaQuery maxWidth={767}>
+                            <span style={{fontSize: "16px"}}><b>{this.state.title}</b></span>
+                        </MediaQuery>
+                        <MediaQuery minWidth={768}>
+                            <span style={{fontSize: "32px"}}><b>{this.state.title}</b></span>
+                        </MediaQuery>
+                    </div>
+                }
                 iconElementLeft={this.props.files.upload.length === 0 ?
                     <IconButton onClick={this.props.openDrawer}><NavigationMenu color={fullWhite}/></IconButton> :
                     <IconButton onClick={this.props.removeAll}
