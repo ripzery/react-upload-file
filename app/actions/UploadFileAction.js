@@ -81,6 +81,12 @@ export const reset = () => {
     }
 };
 
+export const resetGallery = () => {
+    return {
+        type: 'RESET_GALLERY',
+        gallery: []
+    }
+};
 
 export const loadAlbums = (dispatch) => {
     fetch("https://api.ripzery.me/getTypes", {method: 'post'})
@@ -100,7 +106,7 @@ export const loadPhotos = (album, dispatch) => {
         .then((response) => response.json())
         .then((json) => {
             console.log(json);
-            let concatePhotosUrl = json.images.map((photo, index) => ({url: "https://api.ripzery.me" + json.rootPath + photo.name}));
+            let concatePhotosUrl = json.images.map((photo, index) => ({url: "https://api.ripzery.me" + json.rootPath.split(" ").join('%20') + photo.name.split(" ").join('%20')}));
             dispatch({
                 type: 'LOAD_PHOTOS',
                 photos: concatePhotosUrl

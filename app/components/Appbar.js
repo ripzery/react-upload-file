@@ -82,6 +82,7 @@ class Appbar extends React.Component {
 
     handleChange(event, index, value) {
         this.setState({selectAlbum: value});
+        this.props.resetGallery();
         this.props.loadPhotos(this.props.albums[value].name);
     }
 

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import Gallery from '../components/Gallery'
-import {loadPhotos} from '../actions/UploadFileAction'
+import {loadPhotos, resetGallery} from '../actions/UploadFileAction'
 
 const mapStateToProps = (state) => {
     return {

@@ -92,6 +92,8 @@ const gallery = (state = [], action) => {
     switch (action.type){
         case "LOAD_PHOTOS":
             return action.photos;
+        case "RESET_GALLERY":
+            return [];
         default:
             return state;
     }
