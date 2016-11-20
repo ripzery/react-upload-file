@@ -3,12 +3,13 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
-import {fullWhite} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import MediaQuery from 'react-responsive';
-import AppDrawer from './Drawer';
+import baseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {teal500, fullWhite} from 'material-ui/styles/colors';
 
 class Appbar extends React.Component {
     constructor() {
@@ -33,6 +34,21 @@ class Appbar extends React.Component {
         } else {
             console.log("Please select at least 1 file!");
         }
+    }
+
+    getChildContext() {
+        let custom = getMuiTheme({
+            fontFamily: 'Bungee, cursive',
+            palette: {
+                primary1Color: teal500,
+                textColor: fullWhite,
+                canvasColor: "#303030"
+            },
+            appBar: {
+                height: 80
+            }
+        });
+        return {muiTheme: getMuiTheme(custom)};
     }
 
     startUploadingProgress() {
@@ -112,5 +128,9 @@ class Appbar extends React.Component {
         );
     }
 }
+
+Appbar.childContextTypes = {
+    muiTheme: React.PropTypes.object.isRequired
+};
 
 export default Appbar

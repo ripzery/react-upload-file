@@ -1,11 +1,20 @@
 import {connect} from 'react-redux'
 import Gallery from '../components/Gallery'
-import {removeAllFile, upload, openDrawer, loadPhotos} from '../actions/UploadFileAction'
+import {loadPhotos} from '../actions/UploadFileAction'
 
 const mapStateToProps = (state) => {
     return {
-        gallery: state.gallery
+        gallery: state.gallery,
+        albums: state.albums
     }
 };
 
-export default connect(mapStateToProps, null)(Gallery)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadPhotos: (album) => {
+            loadPhotos(album, dispatch)
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery)
