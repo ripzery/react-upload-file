@@ -52,22 +52,22 @@ class Appbar extends React.Component {
     }
 
     startUploadingProgress() {
-        this.progress = setInterval(this.tick, 1000);
+        // this.progress = setInterval(this.tick, 1000);
         this.setState({
-            title: "กำลังอัพโหลด",
+            // title: "กำลังอัพโหลด",
             uploading: true
         })
     }
 
     stopUploadingProgress() {
-        clearInterval(this.progress);
+        // clearInterval(this.progress);
         this.setState({
-            title: "เย้เสร็จแล้ว!!",
+            // title: "เย้เสร็จแล้ว!!",
             uploading: false
         });
-        setTimeout(() => {
-            this.setState({title: "React Uploader"})
-        }, 4000)
+        // setTimeout(() => {
+        //     this.setState({title: "React Uploader"})
+        // }, 4000)
     }
 
     componentWillReceiveProps(nextProps) {
