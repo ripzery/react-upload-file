@@ -25,10 +25,12 @@ const styles = {
     }
 }
 
+const CREATE_ALBUM_KEY = -1;
+
 class Album extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: 1, albumName: ""};
+        this.state = {value: CREATE_ALBUM_KEY, albumName: ""};
         this.props.loadAlbums
     }
 
@@ -38,7 +40,7 @@ class Album extends React.Component {
 
     handleChange = (event, index, value) => {
         this.setState({value});
-        if (value < this.props.albums.length)
+        if (value > 0)
             this.props.selectedAlbum(this.props.albums[value].name);
         else
             this.props.selectedAlbum(this.state.albumName)
@@ -51,16 +53,14 @@ class Album extends React.Component {
 
     componentWillReceiveProps(nextProps){
         if(nextProps.albums.length > 0){
-            this.setState({value: 0});
             this.props.selectedAlbum(nextProps.albums[0].name);
         }
     }
 
     render() {
-        const albumList = this.props.albums.map((album, index) => <MenuItem key={index} value={index}
+        const albumList = [<MenuItem key={CREATE_ALBUM_KEY} style={{fontFamily: this.props.muiTheme.fontFamily}} value={CREATE_ALBUM_KEY} primaryText="CREATE AN ALBUM"/>, ...this.props.albums.map((album, index) => <MenuItem key={index} value={index}
                                                                             style={{fontFamily: this.props.muiTheme.fontFamily}}
-                                                                            primaryText={album.name.toUpperCase()}/>);
-        albumList.push(<MenuItem key={albumList.length} style={{fontFamily: this.props.muiTheme.fontFamily}} value={albumList.length} primaryText="CREATE AN ALBUM"/>);
+                                                                            primaryText={album.name.toUpperCase()}/>)];
         return (
             <div style={styles.textWhite}>
                 <span style={{...styles.inline,fontFamily: this.props.muiTheme.fontFamily}}>Upload to album : </span>
@@ -69,7 +69,7 @@ class Album extends React.Component {
                     {albumList}
                 </SelectField>
                 <div style={{...styles.inline, fontFamily: this.props.muiTheme.fontFamily}}>
-                    {this.state.value === this.props.albums.length ?
+                    {this.state.value === CREATE_ALBUM_KEY ?
                         <TextField
                             style={{...styles.customTextField, fontFamily: this.props.muiTheme.fontFamily}}
                             hintText="Album name..."
