@@ -17,7 +17,7 @@ class Appbar extends React.Component {
         this.upload = this.upload.bind(this);
         this.state = {
             count: 0,
-            title: "Gallery Cute",
+            title: "Gallery Cutes",
             uploading: false,
             selectAlbum: 0
         };
